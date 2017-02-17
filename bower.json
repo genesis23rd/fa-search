@@ -1,0 +1,24 @@
+{
+  "name": "fa-search",
+  "homepage": "https://github.com/genesis23rd/fa-search",
+  "authors": [
+    "Rohm <rmalang@nutritionix.com>"
+  ],
+  "description": "font awesome search tool",
+  "main": "fa-search.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-bootstrap": "^2.5.0",
+    "angular-bootstrap-colorpicker": "^3.0.25"
+  }
+}

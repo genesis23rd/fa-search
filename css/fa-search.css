@@ -1,0 +1,11 @@
+.match-item .fa {
+	margin-left: -15px;
+	width: 30px;
+	display: inline-block;
+	text-align: center;
+}
+
+.icon-view {
+	font-size: 10em;
+	text-align: center;
+}
