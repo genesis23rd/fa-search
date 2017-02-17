@@ -16,64 +16,44 @@
 </head>
 
 <body>
-
-    <div>
-        <script type="text/ng-template" id="template.html">
-          <a class="match-item">
-              <i class="fa fa-{{ match.model.id }}" aria-hidden="true"></i>
-              <span ng-bind-html="match.model.name | uibTypeaheadHighlight:query"></span>
-          </a>
-        </script>
-
-        <div class="container" ng-controller="IconsSearchController">
-            <h1>
-              Font Awesome Search Tool
-            </h1>
+    <script type="text/ng-template" id="template.html">
+        <a class="match-item">
+            <i class="fa fa-{{ match.model.id }}" aria-hidden="true"></i>
+            <span ng-bind-html="match.model.name | uibTypeaheadHighlight:query"></span>
+        </a>
+    </script>
+    <div ng-controller="IconsSearchController">
+        <div class="container">
+            <h4>
+              <strong>Font Awesome Search Tool</strong>
+            </h4>
             <div class="row">
-                <div class="col-md-3">
-                  <p>
-                    <label for="">Font Awesome Icon Search</label>
-                    <input type="text" 
-                          class="form-control" 
-                          placeholder="Search icons..." 
-                          ng-model="vm.selected" 
-                          typeahead-on-select="vm.onSelect($item, $model, $label)" 
-                          uib-typeahead="icon as icon.name for icon in vm.icons | filter:{name:$viewValue} | limitTo:20" 
-                          typeahead-template-url="template.html">  
-                  </p>
+                <div class="col-md-3 form-horizontal">
+                    <p>
+                        <input type="text" class="form-control" placeholder="Search icons..." ng-model="vm.selected" typeahead-on-select="vm.onSelect($item, $model, $label)" uib-typeahead="icon as icon.name for icon in vm.icons | filter:{name:$viewValue} | limitTo:20" typeahead-template-url="template.html">
+                    </p>
+                    <p>
+                        <label>Foreground Color</label>
+                        <input colorpicker type="text" class="form-control" ng-model="vm.foreground.color">
+                    </p>
+                    <p>
+                        <label>Background Color</label>
+                        <input colorpicker type="text" class="form-control" ng-model="vm.background.color">
+                    </p>
+                    <p>
+                        <button class="btn btn-primary" ng-click="vm.reset()">Reset</button>
+                    </p>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-2">
-                  <p>
-                    <label>Foreground Color</label>
-                    <input colorpicker type="text" class="form-control" ng-model="vm.foreground.color">
-                  </p>
+                <div class="col-md-9">
+                    <div class="icon-view" style="background-color:{{ vm.background.color }}">
+                        <div ng-repeat="icon in vm.collection">
+                            <i class="fa fa-{{ icon.id }}" style="color: {{ vm.foreground.color }}; " aria-hidden="true"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-2">
-                  <p>
-                    <label>Background Color</label>
-                    <input colorpicker type="text" class="form-control" ng-model="vm.background.color">
-                  </p>
-                </div>
-                <div class="col-md-1">
-                  <p>
-                    <label>&nbsp;</label>
-                    <button class="btn btn-primary" ng-click="vm.reset()">Reset</button>
-                  </p>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="icon-view" style="background-color:{{ vm.background.color }}">
-                  <p ng-repeat="icon in vm.collection">
-                    <i class="fa fa-{{ icon.id }}" style="color: {{ vm.foreground.color }}; " aria-hidden="true"></i>
-                  </p>
-                </div>                
-              </div>
             </div>
         </div>
     </div>
-
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="//rawgit.com/buberdds/angular-bootstrap-colorpicker/master/js/bootstrap-colorpicker-module.js"></script>
